@@ -46,7 +46,11 @@ def track():
 	table1 = soup.find( "table", { 'class' : 'col-md-12 table-bordered table-striped table-condensed cf width-100' } )
 	table = soup.findAll( "table", { 'class' : 'col-md-12 table-bordered table-striped table-condensed cf width-100' } )
 
-	trsf = table1.find_all('tr')
+	try:
+		trsf = table1.find_all('tr')
+	except AttributeError:
+		messagebox.showerror('Error!', "Invalid Tracking ID!")
+		return
 	headerow1 = rowgetDataText(trsf[0], 'th')
 	if headerow1: 
 		rows1.append(headerow1)
