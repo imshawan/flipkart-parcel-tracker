@@ -61,7 +61,7 @@ def track():
 	dftable1 = pd.DataFrame(rows1[1:], columns=rows1[0])
 	outputconsole(dftable1)
 
-	#-------------------Detailed Tracking info:-----------------------
+	#-------------------Detailed Tracking info:----------------------
 	for tables in table:
 		trs1 = tables.findAll('tr')
 	trs = trs1
