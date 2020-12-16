@@ -3,6 +3,10 @@ import pandas as pd
 import trackfile
 from bs4 import BeautifulSoup
 
+
+def rowgetDataText(tr, coltag='td'): # td (data) or th (header)       
+        return [td.get_text(strip=True) for td in tr.find_all(coltag)]
+
 def track(trackingID):
     rows1 = []
     rows = []
@@ -16,10 +20,6 @@ def track(trackingID):
     soup = BeautifulSoup(r, 'html.parser')
     table1 = soup.find( "table", { 'class' : 'col-md-12 table-bordered table-striped table-condensed cf width-100' } )
     table = soup.findAll( "table", { 'class' : 'col-md-12 table-bordered table-striped table-condensed cf width-100' } )
-
-
-    def rowgetDataText(tr, coltag='td'): # td (data) or th (header)       
-        return [td.get_text(strip=True) for td in tr.find_all(coltag)]
     try:
         trsf = table1.find_all('tr')
     except AttributeError:
