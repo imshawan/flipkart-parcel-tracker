@@ -6,7 +6,12 @@ from bs4 import BeautifulSoup
 def track(trackingID):
     rows1 = []
     rows = []
-    r = requests.get(f'https://ekartlogistics.com/track/{trackingID}/').text
+    try:
+        r = requests.get(f'https://ekartlogistics.com/track/{trackingID}/').text
+    except:
+        print("Sorry, No Internet Connection!")
+        input("")
+        return
 
     soup = BeautifulSoup(r, 'html.parser')
     table1 = soup.find( "table", { 'class' : 'col-md-12 table-bordered table-striped table-condensed cf width-100' } )
